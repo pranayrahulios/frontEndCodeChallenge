@@ -9,7 +9,8 @@ import { IStepInterface } from './enums/interfaces';
 })
 export class AppComponent implements OnInit {
   public sortedArray = [];
-  public sortedArrayNumber = [];
+  public sortedArrayDate = [];
+  public versionContent;
   title = 'frontEntChallenge';
   constructor(private frontEndChallengeWork: FrontEndChallengeWork) {}
 
@@ -20,38 +21,34 @@ export class AppComponent implements OnInit {
 
   getFrontEndChallengeWork(): void {
     this.frontEndChallengeWork.getFulfillmentWork().then((response: any) => {
-      this.sortStepNumber(response);
-      // console.log(response);
+      this.sortedArray = this.sortStepNumberAndVersionContent(response);
     }, (error: any) => {
       console.log(error);
     })
   }
 
-  sortStepNumber(response: any) {
-    let sampleSort = response.length;
-    let sortedLength = [];
-    for (let i = 0; i < sampleSort; i++) {
-      sortedLength.push(response[i].stepNumber);
-      
+  sortStepNumberAndVersionContent(response: any) {
+    function compare(a,b) {
+      const a1 = a.stepNumber;
+      const b1 = b.stepNumber;
+      let comparision = 0;
+      if (a1 > b1) {
+        comparision  = 1;
+      } else if (a1 < b1) {
+        comparision = -1;
+      }
+      return comparision;
     }
-
-    this.sortedArrayNumber = sortedLength.sort((n1,n2)=> n1 - n2);
-    // sortedLength.sort();
-    console.log(this.sortedArrayNumber, 'am array of sort');
-    this.sortedArray = response.map(item => item)
-    // for(let j = 0; j < this.sortedArrayNumber.length; j++) {
-    //   for(let i =0; i < response.length; i++) {
-    //     if (this.sortedArrayNumber[j] === response[i].stepNumber) {
-    //       this.sortedArray.push(response[j]);
-    //     }
-    //   }      
-    //   // if (this.sortedArrayNumber[j] === response[j].stepNumber){
-    //   //   this.sortedArray.push(response[j]);
-    //   // }     
-    //   console.log(this.sortedArray);
-
-    // }
-
-
+    let unsortedVersionContent = response.sort(compare)
+    for(let i=0; i < unsortedVersionContent.length; i++) {
+      let versionCOntent = unsortedVersionContent[i].versionContent;
+      function compareDate(a: any, b: any) {
+        var dateA = +new Date(a.effectiveDate), dateB = +new Date(b.effectiveDate);
+        return dateA - dateB;
+      }
+      versionCOntent.sort(compareDate)
+      unsortedVersionContent[i].versionContent = versionCOntent[0]
+    }
+    return unsortedVersionContent;
   }
 }

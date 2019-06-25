@@ -1,7 +1,16 @@
-.img {
-background: no-repeat fixed;
--webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
-background-size: cover;
+.row{
+font-family: 'Lato', sans-serif;
+flex-direction:row;
+justify-content: space-around;
+}
+.column1{
+    float: left;
+    width: 25%;
+    height: 150px;
+    padding: 5px;;
+}
+.column2{
+    display:flex;
+    font-family: 'Lato', sans-serif;
+    flex-direction:column;
 }

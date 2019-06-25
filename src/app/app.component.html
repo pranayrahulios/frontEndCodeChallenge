@@ -3,7 +3,13 @@
   <h1>
     Welcome to {{ title }}!
   </h1>
-  <img class= "img" alt="Angular Logo" src="assets/photo-couch_2x.jpg">
+  <img width="100%" heigh="100%" alt="Angular Logo" src="assets/photo-couch_2x.jpg">
 </div>
-
+<a>How It Works</a>
+<div class="row" *ngFor="let sortedDisplay of sortedArray">
+  <div class="column1">
+    <div>{{sortedDisplay.versionContent.title}}</div>
+    <div>{{sortedDisplay.versionContent.body}}</div>
+  </div>
+</div>
 <router-outlet></router-outlet>
