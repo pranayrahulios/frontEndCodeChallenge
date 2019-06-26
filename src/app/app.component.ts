@@ -24,11 +24,11 @@ export class AppComponent implements OnInit {
       this.sortedArray = this.sortStepNumberAndVersionContent(response);
     }, (error: any) => {
       console.log(error);
-    })
+    });
   }
 
   sortStepNumberAndVersionContent(response: any) {
-    function compare(a,b) {
+    function compare(a, b) {
       const a1 = a.stepNumber;
       const b1 = b.stepNumber;
       let comparision = 0;
@@ -39,15 +39,17 @@ export class AppComponent implements OnInit {
       }
       return comparision;
     }
-    let unsortedVersionContent = response.sort(compare)
-    for(let i=0; i < unsortedVersionContent.length; i++) {
-      let versionCOntent = unsortedVersionContent[i].versionContent;
+    const unsortedVersionContent = response.sort(compare);
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < unsortedVersionContent.length; i++) {
+      const versionCOntent = unsortedVersionContent[i].versionContent;
       function compareDate(a: any, b: any) {
-        var dateA = +new Date(a.effectiveDate), dateB = +new Date(b.effectiveDate);
+        const dateA = +new Date(a.effectiveDate);
+        const dateB = +new Date(b.effectiveDate);
         return dateA - dateB;
       }
-      versionCOntent.sort(compareDate)
-      unsortedVersionContent[i].versionContent = versionCOntent[0]
+      versionCOntent.sort(compareDate);
+      unsortedVersionContent[i].versionContent = versionCOntent[0];
     }
     return unsortedVersionContent;
   }
