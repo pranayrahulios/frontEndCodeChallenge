@@ -16,7 +16,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFrontEndChallengeWork();
-    this.frontEndChallengeWork.getFulfillmentWork();
   }
 
   getFrontEndChallengeWork(): void {

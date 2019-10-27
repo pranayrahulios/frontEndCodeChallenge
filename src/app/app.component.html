@@ -3,21 +3,20 @@
     <img class="img-src" src="assets/photo-couch_2x.jpg">
     <div class="overlay-img-text">
       <p>New Games & Accessories</p>
-
       <div>
         <h2>Monthly packages. <br> Excitement delivered daily.</h2>
       </div>
-      <p>Whats the best way to shop for the latest video games <br> and peripherals?How about never shopping at all?
-        <br>
-        You'll get new stuff on your doorstep - every month.</p>
+      <p>Whats the best way to shop for the latest video games 
+        <br> and peripherals?How about never shopping at all?
+        <br>You'll get new stuff on your doorstep - every month.
+      </p>
       <button class="btn">GET STARTED</button>
-
     </div>
-  <div class="versionContent">
-  <div class="title-heading">How It Works</div>
-  <div class="row-heading" *ngFor="let sortedDisplay of sortedArray">
-      <div class="stepNumber">{{sortedDisplay.stepNumber.length > 1 ? sortedDisplay.stepNumber : '0' + sortedDisplay.stepNumber}}</div>
-      <div class="title">{{sortedDisplay.versionContent.title}}</div>
-      <div class="sub-title">{{sortedDisplay.versionContent.body}}</div>
-  </div>
-</div>
+    <div class="versionContent">
+      <div class="title-heading">How It Works</div>
+      <div class="row-heading" *ngFor="let sortedDisplay of sortedArray">
+        <div class="stepNumber">{{sortedDisplay.stepNumber.length > 1 ? sortedDisplay.stepNumber : '0' + sortedDisplay.stepNumber}}</div>
+        <div class="title">{{sortedDisplay.versionContent.title}}</div>
+        <div class="sub-title">{{sortedDisplay.versionContent.body}}</div>
+      </div>
+    </div>
